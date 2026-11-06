@@ -87,93 +87,115 @@ details.sol summary{color:var(--c3);font-size:1.02rem}
 <p>Algorithmique et Programmation · Cours illustré, méthode pas à pas et 7 applications corrigées</p></header>
 <nav class="toc"><a href="#s1">1 Comprendre</a><a href="#s2">2 Outils</a><a href="#s3">3 Installation</a><a href="#s4">4 Qt Designer</a><a href="#s5">5 Widgets</a><a href="#s6">6 Programme</a><a href="#s7">7 Applications</a><a href="#s8">8 À retenir</a></nav>
 <div class="card" style="--c:var(--c4)"><h3>Comment lire cette fiche ?</h3><p>Les parties <b>1 à 6</b> expliquent le cours avec des mots simples, des schémas et des exemples. La partie <b>7</b> propose 7 applications : cherche d’abord seul(e), puis ouvre <b>« Voir la correction »</b> pour comparer avec l’<b>algorithme</b> et le <b>code Python</b>.</p></div><div class="sec" id="s1" style="--c:var(--c1)"><b>1</b>Comprendre l’essentiel</div><div class="two"><div class="card" style="--c:var(--c1)"><h3>Programme console</h3><p>Le <b>programme décide</b> de l’ordre : il demande, attend la réponse, calcule, affiche. L’utilisateur répond au clavier, en mode texte.</p><pre>n = int(input("n : "))
-print(n * 2)</pre></div><div class="card" style="--c:var(--c2)"><h3>Programme graphique (GUI)</h3><p>L’<b>utilisateur décide</b> : il clique quand il veut, sur le bouton qu’il veut. Le programme <b>attend</b> puis <b>réagit</b> : c’est la <b>programmation évènementielle</b>.</p><p><b>GUI</b> = Graphical User Interface (interface graphique).</p></div></div><div class="card" style="--c:var(--c5);margin-top:14px"><h3>Le vocabulaire à connaître</h3><table><tr><th>Terme</th><th>En mots simples</th></tr><tr><td><b>Widget</b></td><td>un élément de la fenêtre : bouton, zone de texte, étiquette, case à cocher… (de « window gadget »)</td></tr><tr><td><b>Évènement</b></td><td>quelque chose qui se passe : un clic, une touche pressée, un déplacement de souris</td></tr><tr><td><b>Gestionnaire d’évènement</b></td><td>la fonction Python qui dit quoi faire quand l’évènement se produit</td></tr><tr><td><b>Boucle d’évènements</b></td><td>le programme « écoute » en permanence : c’est <code>app.exec()</code></td></tr><tr><td><b>Signal</b></td><td>le message envoyé par un widget quand un évènement arrive, par exemple <code>clicked()</code></td></tr><tr><td><b>Slot</b></td><td>la fonction qui reçoit le signal et s’exécute</td></tr><tr><td><b>connect()</b></td><td>le « fil » qui relie un signal à un slot</td></tr></table></div><div class="card" style="--c:var(--c4);margin-top:14px"><h3>Signal / Slot : l’exemple de la sonnette</h3><div class="flow"><div class="nd" style="--c:var(--c1)">Widget<small>le bouton (la sonnette)</small></div><span class="ar">&#8594;</span><div class="nd" style="--c:var(--c4)">Signal<small>clicked() : on appuie</small></div><span class="ar">&#8594;</span><div class="nd" style="--c:var(--c3)">Slot<small>la fonction (ouvrir la porte)</small></div></div><p>On appuie sur la sonnette (<b>signal</b>), et quelqu’un ouvre la porte (<b>slot</b>). L’appel <code>connect()</code> installe le câble entre les deux.</p><pre>dlg.calculersomme.clicked.connect(calcul)
+print(n * 2)</pre></div><div class="card" style="--c:var(--c2)"><h3>Programme graphique (GUI)</h3><p>L’<b>utilisateur décide</b> : il clique quand il veut, sur le bouton qu’il veut. Le programme <b>attend</b> puis <b>réagit</b> : c’est la <b>programmation évènementielle</b>.</p><p><b>GUI</b> = Graphical User Interface (interface graphique).</p></div></div><div class="card" style="--c:var(--c5);margin-top:14px"><h3>Le vocabulaire à connaître</h3><table><tr><th>Terme</th><th>En mots simples</th></tr><tr><td><b>Widget</b></td><td>un élément de la fenêtre : bouton, zone de texte, étiquette, case à cocher… (de « window gadget »)</td></tr><tr><td><b>Évènement</b></td><td>quelque chose qui se passe : un clic, une touche pressée, un déplacement de souris</td></tr><tr><td><b>Gestionnaire d’évènement</b></td><td>la fonction Python qui dit quoi faire quand l’évènement se produit</td></tr><tr><td><b>Boucle d’évènements</b></td><td>le programme « écoute » en permanence : c’est <code>app.exec()</code></td></tr><tr><td><b>Signal</b></td><td>le message envoyé par un widget quand un évènement arrive, par exemple <code>clicked()</code></td></tr><tr><td><b>Slot</b></td><td>la fonction qui reçoit le signal et s’exécute</td></tr><tr><td><b>connect()</b></td><td>le « fil » qui relie un signal à un slot</td></tr></table></div><div class="card" style="--c:var(--c4);margin-top:14px"><h3>Signal / Slot : l’exemple de la sonnette</h3><div class="flow"><div class="nd" style="--c:var(--c1)">Widget<small>le bouton (la sonnette)</small></div><span class="ar">&#8594;</span><div class="nd" style="--c:var(--c4)">Signal<small>clicked() : on appuie</small></div><span class="ar">&#8594;</span><div class="nd" style="--c:var(--c3)">Slot<small>la fonction (ouvrir la porte)</small></div></div><p>On appuie sur la sonnette (<b>signal</b>), et quelqu’un ouvre la porte (<b>slot</b>). L’appel <code>connect()</code> installe le câble entre les deux.</p><pre>windows.calculersomme.clicked.connect(calcul)
 #  widget          signal      connect   slot (sans parenthèses)</pre></div><div class="sec" id="s2" style="--c:var(--c5)"><b>2</b>Les outils et la chaîne de travail</div><div class="card" style="--c:var(--c5)"><h3>De l’idée au programme qui fonctionne</h3><div class="flow"><div class="nd" style="--c:var(--c1)">Qt Designer<small>je dessine la fenêtre</small></div><span class="ar">&#8594;</span><div class="nd" style="--c:var(--c2)">fichier .ui<small>description de l’interface</small></div><span class="ar">&#8594;</span><div class="nd" style="--c:var(--c4)">uic.loadUi()<small>charge le .ui</small></div><span class="ar">&#8594;</span><div class="nd" style="--c:var(--c3)">fichier .py<small>le code (Thonny)</small></div></div></div><div class="card" style="--c:var(--c5);margin-top:14px"><table><tr><th>Outil</th><th>Rôle</th><th>Fichier</th></tr><tr><td><b>Qt Designer</b></td><td>dessiner l’interface par glisser-déposer (Drag &amp; Drop)</td><td><code>.ui</code></td></tr><tr><td><b>Thonny</b></td><td>écrire et exécuter le programme Python</td><td><code>.py</code></td></tr><tr><td><b>PyQt5</b></td><td>module qui relie Python à la bibliothèque graphique Qt5</td><td>bibliothèque</td></tr></table><div class="note" style="--c:var(--c2)"><b class="t">Règle d’or.</b> le fichier <code>.ui</code> doit être dans le <b>même dossier</b> que le fichier <code>.py</code>.</div></div><div class="sec" id="s3" style="--c:var(--c3)"><b>3</b>Installation</div><div class="two"><div class="card" style="--c:var(--c3)"><h3>Méthode 1 : avec Thonny</h3><div class="step" style="--c:var(--c3)"><i>1</i><div>Menu <b>Outils</b> (Tools), puis <b>Gérer les paquets</b>.</div></div><div class="step" style="--c:var(--c3)"><i>2</i><div>Taper <code>PyQt5</code>, cliquer sur <i>Rechercher sur PyPI</i>, puis <i>Installer</i>.</div></div><div class="step" style="--c:var(--c3)"><i>3</i><div>Refaire la même chose avec <code>pyqt5Designer</code>.</div></div></div><div class="card" style="--c:var(--c6)"><h3>Méthode 2 : avec cmd</h3><pre>pip install pyqt5
-pip install pyqt5Designer</pre><p>Ouvrir l’invite de commandes <b>cmd</b> (ou PowerShell) puis taper ces deux lignes.</p></div></div><div class="card" style="--c:var(--c4)"><h3>Ouvrir Qt Designer</h3><div class="step" style="--c:var(--c4)"><i>1</i><div>Dans <i>Gérer les paquets</i>, sélectionner <code>pyqt5designer</code> et cliquer sur le lien du dossier d’installation.</div></div><div class="step" style="--c:var(--c4)"><i>2</i><div>Ouvrir <code>site-packages</code>, puis <code>QtDesigner</code>.</div></div><div class="step" style="--c:var(--c4)"><i>3</i><div>Lancer <b>designer</b> (clic droit, <i>Envoyer vers</i> Bureau pour créer un raccourci).</div></div><p>On peut aussi télécharger le logiciel indépendant Qt Designer.</p></div><div class="sec" id="s4" style="--c:var(--c6)"><b>4</b>Construire une interface avec Qt Designer</div><div class="card" style="--c:var(--c6)"><h3>Les zones de la fenêtre</h3><div class="win"><div class="top">Barre de menu et barre d’outils</div><div class="col"><div style="background:#2563eb">Boîte de widgets<br>à glisser dans la fenêtre</div></div><div style="background:#16a34a;padding-top:40px">Formulaire (Form)<br>la fenêtre en construction</div><div class="col"><div style="background:#f97316">Inspecteur d’objets<br>liste des widgets</div><div style="background:#db2777">Éditeur de propriétés</div><div style="background:#7c3aed">Éditeur de signaux et slots</div></div></div></div><div class="card" style="--c:var(--c1);margin-top:14px"><h3>Les 5 étapes de création</h3><div class="step" style="--c:var(--c1)"><i>1</i><div><b>Nouveau formulaire</b> : choisir <i>Widget</i> (le plus simple) ou <i>Main Window</i>, puis <i>Créer</i>.</div></div><div class="step" style="--c:var(--c1)"><i>2</i><div><b>Ajouter les widgets</b> : les faire glisser depuis la boîte de widgets (ou taper leur nom dans le filtre). Pour supprimer : touche <b>Suppr</b>.</div></div><div class="step" style="--c:var(--c1)"><i>3</i><div><b>Nommer</b> chaque widget : propriété <code>objectName</code>. Ce nom sera utilisé dans le programme : <code>dlg.objectName</code>.</div></div><div class="step" style="--c:var(--c1)"><i>4</i><div><b>Personnaliser</b> : texte, police, alignement, couleurs (voir le tableau ci-dessous).</div></div><div class="step" style="--c:var(--c1)"><i>5</i><div><b>Enregistrer</b> (Ctrl+S) en <code>.ui</code>, dans le dossier du programme, puis tester avec <i>Formulaire</i>, <i>Prévisualisation</i>.</div></div></div><div class="card" style="--c:var(--c2);margin-top:14px"><h3>Propriétés : quoi modifier, et où</h3><p>Tout se règle dans l’<b>éditeur de propriétés</b>. Astuce : clic droit sur un widget, puis <i>change text</i>, <i>change objectName</i>, <i>change styleSheet</i>.</p><table><tr><th>Action</th><th>Fenêtre</th><th>Widget</th></tr><tr><td>Nom</td><td colspan="2"><code>objectName</code></td></tr><tr><td>Titre</td><td><code>windowTitle</code></td><td>—</td></tr><tr><td>Texte</td><td>—</td><td><code>text</code></td></tr><tr><td>Taille</td><td colspan="2"><code>geometry</code> (Width, Height)</td></tr><tr><td>Taille fixe</td><td><code>minimumSize</code> et <code>maximumSize</code></td><td>—</td></tr><tr><td>Police, taille, style</td><td>—</td><td><code>font</code></td></tr><tr><td>Alignement</td><td>—</td><td><code>alignment</code></td></tr><tr><td>Couleur de fond</td><td colspan="2"><code>styleSheet</code> : <code>background-color</code></td></tr><tr><td>Couleur du texte</td><td>—</td><td><code>styleSheet</code> : <code>color</code></td></tr><tr><td>Image</td><td>—</td><td>Label, propriété <code>pixmap</code></td></tr></table><div class="note" style="--c:var(--c2)"><b class="t">Image.</b> le fichier image doit être dans le même dossier que le fichier <code>.ui</code>.</div></div><div class="card" style="--c:var(--c3);margin-top:14px"><h3>Programmer un bouton sans écrire de code Python</h3><p>Pour <b>fermer</b> la fenêtre ou <b>vider</b> une zone, on peut utiliser l’éditeur de signaux et slots : cliquer sur <b>+</b>, puis double-clic dans chaque colonne.</p><table><tr><th>Émetteur</th><th>Signal</th><th>Receveur</th><th>Slot</th></tr><tr><td>fermer (bouton)</td><td><code>clicked()</code></td><td>Form (la fenêtre)</td><td><code>close()</code></td></tr><tr><td>init (bouton)</td><td><code>clicked()</code></td><td>n1, n2, res</td><td><code>clear()</code></td></tr></table><p><b>Émetteur</b> : le widget qui envoie. <b>Signal</b> : l’évènement. <b>Receveur</b> : le widget qui reçoit. <b>Slot</b> : l’action exécutée.</p></div><div class="sec" id="s5" style="--c:var(--c2)"><b>5</b>Les widgets et leurs méthodes</div><div class="card" style="--c:var(--c2)"><table><tr><th>Widget</th><th>Classe</th><th>Aperçu</th><th>Méthodes à retenir</th></tr><tr><td><b>Label</b></td><td>QLabel</td><td><span class="mi">texte</span></td><td><code>setText(ch)</code> modifie le texte (ch : chaîne) · <code>text()</code> · <code>clear()</code>. Image : <code>pixmap</code></td></tr><tr><td><b>Line Edit</b></td><td>QLineEdit</td><td><input type="text" size="8" value="12"></td><td><code>text()</code> lit la saisie (<b>str</b>) · <code>setText(ch)</code> · <code>clear()</code> · <code>setFocus()</code> · <code>returnPressed.connect(f)</code> (touche Entrée)</td></tr><tr><td><b>Push Button</b></td><td>QPushButton</td><td><input type="button" value="OK"></td><td><code>clicked.connect(f)</code> · avec paramètre : <code>clicked.connect(lambda: f(dlg.x.text()))</code></td></tr><tr><td><b>Combo Box</b></td><td>QComboBox</td><td><select><option>+</option><option>-</option></select></td><td><code>currentText()</code> renvoie le choix. Double-clic dans Designer pour modifier la liste</td></tr><tr><td><b>Radio Button</b></td><td>QRadioButton</td><td><input type="radio"> <input type="radio" checked></td><td><code>isChecked()</code> : <b>un seul</b> choix à la fois</td></tr><tr><td><b>Check Box</b></td><td>QCheckBox</td><td><input type="checkbox" checked> <input type="checkbox"></td><td><code>isChecked()</code> : <b>plusieurs</b> choix possibles</td></tr><tr><td><b>Text Browser / Text Edit</b></td><td>QTextBrowser / QTextEdit</td><td><textarea rows="2" cols="10"></textarea></td><td>texte sur plusieurs lignes : <code>setText(ch)</code> avec <code>"\n"</code>. Text Browser : affichage seul. Text Edit : <code>toPlainText()</code> pour lire</td></tr><tr><td><b>Message Box</b></td><td>QMessageBox</td><td><span class="mbtn">&#9888; Attention</span></td><td><code>QtWidgets.QMessageBox.critical(dlg, "Titre", "Message")</code> · aussi <code>warning</code>, <code>information</code>, <code>question</code></td></tr></table><div class="note" style="--c:var(--c4)"><b class="t">Règle d’or des saisies.</b> <code>text()</code> renvoie <b>toujours une chaîne</b>. Avant de calculer : <code>int(ch)</code>. Avant d’afficher : <code>str(r)</code>.</div></div><div class="sec" id="s6" style="--c:var(--c3)"><b>6</b>Le programme PyQt5, ligne par ligne</div><div class="card" style="--c:var(--c3)"><table><tr><th>#</th><th>Ligne</th><th>Rôle</th></tr><tr><td><b>1</b></td><td><code>from PyQt5 import QtWidgets, uic</code></td><td>importer les outils PyQt5</td></tr><tr><td><b>2</b></td><td><code>app = QtWidgets.QApplication([])</code></td><td>créer l’application : toujours <b>avant</b> tout objet graphique</td></tr><tr><td><b>3</b></td><td><code>dlg = uic.loadUi("fichier.ui")</code></td><td>charger l’interface dessinée ; <code>dlg</code> représente la fenêtre</td></tr><tr><td><b>4</b></td><td><code>def traitement(): ...</code></td><td>écrire les fonctions (les slots) : lire, convertir, calculer, afficher</td></tr><tr><td><b>5</b></td><td><code>dlg.bouton.clicked.connect(traitement)</code></td><td>relier le bouton à sa fonction (sans parenthèses)</td></tr><tr><td><b>6</b></td><td><code>dlg.show()</code></td><td>afficher la fenêtre</td></tr><tr><td><b>7</b></td><td><code>app.exec()</code></td><td>lancer la boucle d’évènements : toujours en <b>dernier</b></td></tr></table><div class="note" style="--c:var(--c6)"><b class="t">Deux formes de connexion.</b> <code>clicked.connect(f)</code> si <code>f</code> n’a pas de paramètre (on lit la saisie dans <code>f</code>) ; <code>clicked.connect(lambda: f(dlg.x.text()))</code> si <code>f</code> reçoit un paramètre.</div><div class="note" style="--c:var(--c4)"><b class="t">Autres écritures du cours.</b> On rencontre aussi <code>from PyQt5.uic import *</code>, <code>loadUi(...)</code> et <code>app.exec_()</code> : c’est équivalent.</div></div><div class="card" style="--c:var(--c4);margin-top:14px"><h3>Les erreurs les plus fréquentes</h3><table><tr><th>Erreur</th><th>Correction</th></tr><tr><td>calculer avec <code>text()</code> sans conversion</td><td><code>int(dlg.x.text())</code></td></tr><tr><td><code>setText(r)</code> avec un nombre</td><td><code>setText(str(r))</code></td></tr><tr><td><code>connect(f())</code></td><td><code>connect(f)</code> : sans parenthèses</td></tr><tr><td><code>dlg.x</code> introuvable</td><td>vérifier l’<code>objectName</code> dans Qt Designer</td></tr><tr><td>fichier <code>.ui</code> introuvable</td><td>le mettre dans le dossier du <code>.py</code></td></tr><tr><td>fenêtre qui se ferme aussitôt</td><td>oublier <code>app.exec()</code> à la fin</td></tr></table></div><div class="sec" id="s7" style="--c:var(--c4)"><b>7</b>Applications corrigées</div><div class="tip">Méthode conseillée : 1) lire l’énoncé, 2) dessiner l’interface et noter les <code>objectName</code>, 3) écrire l’algorithme sur papier, 4) coder, 5) seulement ensuite ouvrir la correction.</div><table style="background:var(--card);border-radius:10px"><tr><th>N°</th><th>Application</th><th>Widgets utilisés</th></tr><tr><td><a href="#app1">1</a></td><td>Somme de deux entiers</td><td>Labels, Line Edit, Push Button</td></tr><tr><td><a href="#app2">2</a></td><td>PGCD de deux nombres</td><td>mêmes widgets, fonction <code>pgcd</code></td></tr><tr><td><a href="#app3">3</a></td><td>Nombre premier</td><td>boutons Tester, Réinitialiser, Fermer</td></tr><tr><td><a href="#app4">4</a></td><td>Mini calculatrice</td><td>Combo Box (+ − * / div mod), image</td></tr><tr><td><a href="#app5">5, 6, 7</a></td><td>PGCD / PPCM</td><td>même sujet en 3 versions : Combo Box + QMessageBox, boutons radio, cases à cocher + Text Browser</td></tr></table><div class="card pj" id="app1" style="--c:var(--c1)"><h3>Application 1 : Somme de deux entiers</h3><p>Créer l’interface <code>interface_somme.ui</code> (fenêtre <code>fs</code>, titre « Calcul somme », taille 700×200) qui calcule et affiche la somme de deux entiers, puis le programme <code>pgm_somme.py</code> avec une fonction <code>somme()</code>.</p><div class="mock"><div class="mt">&#9635; Calcul somme</div><div class="mb"><span><b>A</b></span><span class="mi " style="min-width:90px">15</span><span><b>B</b></span><span class="mi " style="min-width:90px">32</span><span class="mbtn">somme</span><span class="mi res" style="min-width:60px">47</span></div></div><table><tr><th>objectName</th><th>Classe</th><th>Rôle</th></tr><tr><td><code>a</code></td><td>QLineEdit</td><td>saisie du premier entier</td></tr><tr><td><code>b</code></td><td>QLineEdit</td><td>saisie du deuxième entier</td></tr><tr><td><code>calculersomme</code></td><td>QPushButton</td><td>lance le calcul</td></tr><tr><td><code>resultat</code></td><td>QLabel</td><td>affiche la somme</td></tr></table><details class="sol"><summary>Voir la correction (algorithme et code)</summary><div class="lab" style="--c:#1d4ed8">Algorithme</div><pre class="algo">Fonction somme(n1, n2 : entier) : entier
+pip install pyqt5Designer</pre><p>Ouvrir l’invite de commandes <b>cmd</b> (ou PowerShell) puis taper ces deux lignes.</p></div></div><div class="card" style="--c:var(--c4)"><h3>Ouvrir Qt Designer</h3><div class="step" style="--c:var(--c4)"><i>1</i><div>Dans <i>Gérer les paquets</i>, sélectionner <code>pyqt5designer</code> et cliquer sur le lien du dossier d’installation.</div></div><div class="step" style="--c:var(--c4)"><i>2</i><div>Ouvrir <code>site-packages</code>, puis <code>QtDesigner</code>.</div></div><div class="step" style="--c:var(--c4)"><i>3</i><div>Lancer <b>designer</b> (clic droit, <i>Envoyer vers</i> Bureau pour créer un raccourci).</div></div><p>On peut aussi télécharger le logiciel indépendant Qt Designer.</p></div><div class="sec" id="s4" style="--c:var(--c6)"><b>4</b>Construire une interface avec Qt Designer</div><div class="card" style="--c:var(--c6)"><h3>Les zones de la fenêtre</h3><div class="win"><div class="top">Barre de menu et barre d’outils</div><div class="col"><div style="background:#2563eb">Boîte de widgets<br>à glisser dans la fenêtre</div></div><div style="background:#16a34a;padding-top:40px">Formulaire (Form)<br>la fenêtre en construction</div><div class="col"><div style="background:#f97316">Inspecteur d’objets<br>liste des widgets</div><div style="background:#db2777">Éditeur de propriétés</div><div style="background:#7c3aed">Éditeur de signaux et slots</div></div></div></div><div class="card" style="--c:var(--c1);margin-top:14px"><h3>Les 5 étapes de création</h3><div class="step" style="--c:var(--c1)"><i>1</i><div><b>Nouveau formulaire</b> : choisir <i>Widget</i> (le plus simple) ou <i>Main Window</i>, puis <i>Créer</i>.</div></div><div class="step" style="--c:var(--c1)"><i>2</i><div><b>Ajouter les widgets</b> : les faire glisser depuis la boîte de widgets (ou taper leur nom dans le filtre). Pour supprimer : touche <b>Suppr</b>.</div></div><div class="step" style="--c:var(--c1)"><i>3</i><div><b>Nommer</b> chaque widget : propriété <code>objectName</code>. Ce nom sera utilisé dans le programme : <code>windows.objectName</code>.</div></div><div class="step" style="--c:var(--c1)"><i>4</i><div><b>Personnaliser</b> : texte, police, alignement, couleurs (voir le tableau ci-dessous).</div></div><div class="step" style="--c:var(--c1)"><i>5</i><div><b>Enregistrer</b> (Ctrl+S) en <code>.ui</code>, dans le dossier du programme, puis tester avec <i>Formulaire</i>, <i>Prévisualisation</i>.</div></div></div><div class="card" style="--c:var(--c2);margin-top:14px"><h3>Propriétés : quoi modifier, et où</h3><p>Tout se règle dans l’<b>éditeur de propriétés</b>. Astuce : clic droit sur un widget, puis <i>change text</i>, <i>change objectName</i>, <i>change styleSheet</i>.</p><table><tr><th>Action</th><th>Fenêtre</th><th>Widget</th></tr><tr><td>Nom</td><td colspan="2"><code>objectName</code></td></tr><tr><td>Titre</td><td><code>windowTitle</code></td><td>—</td></tr><tr><td>Texte</td><td>—</td><td><code>text</code></td></tr><tr><td>Taille</td><td colspan="2"><code>geometry</code> (Width, Height)</td></tr><tr><td>Taille fixe</td><td><code>minimumSize</code> et <code>maximumSize</code></td><td>—</td></tr><tr><td>Police, taille, style</td><td>—</td><td><code>font</code></td></tr><tr><td>Alignement</td><td>—</td><td><code>alignment</code></td></tr><tr><td>Couleur de fond</td><td colspan="2"><code>styleSheet</code> : <code>background-color</code></td></tr><tr><td>Couleur du texte</td><td>—</td><td><code>styleSheet</code> : <code>color</code></td></tr><tr><td>Image</td><td>—</td><td>Label, propriété <code>pixmap</code></td></tr></table><div class="note" style="--c:var(--c2)"><b class="t">Image.</b> le fichier image doit être dans le même dossier que le fichier <code>.ui</code>.</div></div><div class="card" style="--c:var(--c3);margin-top:14px"><h3>Programmer un bouton sans écrire de code Python</h3><p>Pour <b>fermer</b> la fenêtre ou <b>vider</b> une zone, on peut utiliser l’éditeur de signaux et slots : cliquer sur <b>+</b>, puis double-clic dans chaque colonne.</p><table><tr><th>Émetteur</th><th>Signal</th><th>Receveur</th><th>Slot</th></tr><tr><td>fermer (bouton)</td><td><code>clicked()</code></td><td>Form (la fenêtre)</td><td><code>close()</code></td></tr><tr><td>init (bouton)</td><td><code>clicked()</code></td><td>n1, n2, res</td><td><code>clear()</code></td></tr></table><p><b>Émetteur</b> : le widget qui envoie. <b>Signal</b> : l’évènement. <b>Receveur</b> : le widget qui reçoit. <b>Slot</b> : l’action exécutée.</p></div><div class="sec" id="s5" style="--c:var(--c2)"><b>5</b>Les widgets et leurs méthodes</div><div class="card" style="--c:var(--c2)"><table><tr><th>Widget</th><th>Classe</th><th>Aperçu</th><th>Méthodes à retenir</th></tr><tr><td><b>Label</b></td><td>QLabel</td><td><span class="mi">texte</span></td><td><code>setText(ch)</code> modifie le texte (ch : chaîne) · <code>text()</code> · <code>clear()</code>. Image : <code>pixmap</code></td></tr><tr><td><b>Line Edit</b></td><td>QLineEdit</td><td><input type="text" size="8" value="12"></td><td><code>text()</code> lit la saisie (<b>str</b>) · <code>setText(ch)</code> · <code>clear()</code> · <code>setFocus()</code> · <code>returnPressed.connect(f)</code> (touche Entrée)</td></tr><tr><td><b>Push Button</b></td><td>QPushButton</td><td><input type="button" value="OK"></td><td><code>clicked.connect(f)</code> · avec paramètre : <code>clicked.connect(lambda: f(windows.x.text()))</code></td></tr><tr><td><b>Combo Box</b></td><td>QComboBox</td><td><select><option>+</option><option>-</option></select></td><td><code>currentText()</code> renvoie le choix. Double-clic dans Designer pour modifier la liste</td></tr><tr><td><b>Radio Button</b></td><td>QRadioButton</td><td><input type="radio"> <input type="radio" checked></td><td><code>isChecked()</code> : <b>un seul</b> choix à la fois</td></tr><tr><td><b>Check Box</b></td><td>QCheckBox</td><td><input type="checkbox" checked> <input type="checkbox"></td><td><code>isChecked()</code> : <b>plusieurs</b> choix possibles</td></tr><tr><td><b>Text Browser / Text Edit</b></td><td>QTextBrowser / QTextEdit</td><td><textarea rows="2" cols="10"></textarea></td><td>texte sur plusieurs lignes : <code>setText(ch)</code> avec <code>"\n"</code>. Text Browser : affichage seul. Text Edit : <code>toPlainText()</code> pour lire</td></tr><tr><td><b>Message Box</b></td><td>QMessageBox</td><td><span class="mbtn">&#9888; Attention</span></td><td><code>QMessageBox.critical(windows, "Titre", "Message")</code> (à importer avec <code>QApplication</code>) · aussi <code>warning</code>, <code>information</code>, <code>question</code></td></tr></table><div class="note" style="--c:var(--c4)"><b class="t">Règle d’or des saisies.</b> <code>text()</code> renvoie <b>toujours une chaîne</b>. Avant de calculer : <code>int(ch)</code>. Avant d’afficher : <code>str(r)</code>.</div></div><div class="sec" id="s6" style="--c:var(--c3)"><b>6</b>Le programme PyQt5, ligne par ligne</div><div class="card" style="--c:var(--c3)"><h3>Le squelette à connaître</h3><pre>from PyQt5.uic import loadUi
+from PyQt5.QtWidgets import QApplication
+
+
+def traitement():
+    ...
+
+
+app = QApplication([])
+windows = loadUi("somme.ui")
+
+windows.bouton.clicked.connect(traitement)
+
+windows.show()
+app.exec()</pre></div><div class="card" style="--c:var(--c3)"><table><tr><th>#</th><th>Ligne</th><th>Rôle</th></tr><tr><td><b>1</b></td><td><code>from PyQt5.uic import loadUi</code></td><td>importer la fonction qui charge le fichier .ui</td></tr><tr><td><b>2</b></td><td><code>from PyQt5.QtWidgets import QApplication</code></td><td>importer la classe application ; on ajoute d’autres classes si besoin (par exemple <code>QMessageBox</code>)</td></tr><tr><td><b>3</b></td><td><code>def traitement(): ...</code></td><td>écrire les fonctions (les slots) : lire, convertir, calculer, afficher</td></tr><tr><td><b>4</b></td><td><code>app = QApplication([])</code></td><td>créer l’application avant d’afficher la fenêtre</td></tr><tr><td><b>5</b></td><td><code>windows = loadUi("fichier.ui")</code></td><td>charger l’interface dessinée ; <code>windows</code> représente la fenêtre</td></tr><tr><td><b>6</b></td><td><code>windows.bouton.clicked.connect(traitement)</code></td><td>relier le bouton à sa fonction (sans parenthèses)</td></tr><tr><td><b>7</b></td><td><code>windows.show()</code></td><td>afficher la fenêtre</td></tr><tr><td><b>8</b></td><td><code>app.exec()</code></td><td>lancer la boucle d’évènements : toujours en <b>dernier</b></td></tr></table><div class="note" style="--c:var(--c6)"><b class="t">Deux formes de connexion.</b> <code>clicked.connect(f)</code> si <code>f</code> n’a pas de paramètre (on lit la saisie dans <code>f</code>) ; <code>clicked.connect(lambda: f(windows.x.text()))</code> si <code>f</code> reçoit un paramètre.</div><div class="note" style="--c:var(--c4)"><b class="t">Autres écritures du cours.</b> On rencontre aussi <code>from PyQt5 import QtWidgets, uic</code>, <code>uic.loadUi(...)</code>, <code>app.exec_()</code> ou le nom <code>dlg</code> : c’est équivalent.</div></div><div class="card" style="--c:var(--c4);margin-top:14px"><h3>Les erreurs les plus fréquentes</h3><table><tr><th>Erreur</th><th>Correction</th></tr><tr><td>calculer avec <code>text()</code> sans conversion</td><td><code>int(windows.x.text())</code></td></tr><tr><td><code>setText(r)</code> avec un nombre</td><td><code>setText(str(r))</code></td></tr><tr><td><code>connect(f())</code></td><td><code>connect(f)</code> : sans parenthèses</td></tr><tr><td><code>windows.x</code> introuvable</td><td>vérifier l’<code>objectName</code> dans Qt Designer</td></tr><tr><td>fichier <code>.ui</code> introuvable</td><td>le mettre dans le dossier du <code>.py</code></td></tr><tr><td>fenêtre qui se ferme aussitôt</td><td>oublier <code>app.exec()</code> à la fin</td></tr></table></div><div class="sec" id="s7" style="--c:var(--c4)"><b>7</b>Applications corrigées</div><div class="tip">Méthode conseillée : 1) lire l’énoncé, 2) dessiner l’interface et noter les <code>objectName</code>, 3) écrire l’algorithme sur papier, 4) coder, 5) seulement ensuite ouvrir la correction.</div><table style="background:var(--card);border-radius:10px"><tr><th>N°</th><th>Application</th><th>Widgets utilisés</th></tr><tr><td><a href="#app1">1</a></td><td>Somme de deux entiers</td><td>Labels, Line Edit, Push Button</td></tr><tr><td><a href="#app2">2</a></td><td>PGCD de deux nombres</td><td>mêmes widgets, fonction <code>pgcd</code></td></tr><tr><td><a href="#app3">3</a></td><td>Nombre premier</td><td>boutons Tester, Réinitialiser, Fermer</td></tr><tr><td><a href="#app4">4</a></td><td>Mini calculatrice</td><td>Combo Box (+ − * / div mod), image</td></tr><tr><td><a href="#app5">5, 6, 7</a></td><td>PGCD / PPCM</td><td>même sujet en 3 versions : Combo Box + QMessageBox, boutons radio, cases à cocher + Text Browser</td></tr></table><div class="card pj" id="app1" style="--c:var(--c1)"><h3>Application 1 : Somme de deux entiers</h3><p>Créer l’interface <code>interface_somme.ui</code> (fenêtre <code>fs</code>, titre « Calcul somme », taille 700×200) qui calcule et affiche la somme de deux entiers, puis le programme <code>pgm_somme.py</code> avec une fonction <code>somme()</code>.</p><div class="mock"><div class="mt">&#9635; Calcul somme</div><div class="mb"><span><b>A</b></span><span class="mi " style="min-width:90px">15</span><span><b>B</b></span><span class="mi " style="min-width:90px">32</span><span class="mbtn">somme</span><span class="mi res" style="min-width:60px">47</span></div></div><table><tr><th>objectName</th><th>Classe</th><th>Rôle</th></tr><tr><td><code>a</code></td><td>QLineEdit</td><td>saisie du premier entier</td></tr><tr><td><code>b</code></td><td>QLineEdit</td><td>saisie du deuxième entier</td></tr><tr><td><code>calculersomme</code></td><td>QPushButton</td><td>lance le calcul</td></tr><tr><td><code>resultat</code></td><td>QLabel</td><td>affiche la somme</td></tr></table><details class="sol"><summary>Voir la correction (algorithme et code)</summary><div class="lab" style="--c:#1d4ed8">Algorithme</div><pre class="algo">Fonction somme(n1, n2 : entier) : entier
 Début
    Retourner n1 + n2
 Fin
 
-Procédure calcul()          // exécutée au clic sur le bouton
+Procédure calculer()          // exécutée au clic sur le bouton
 Début
    ch1 ← contenu de la zone a
    ch2 ← contenu de la zone b
    Si Estnum(ch1) ET Estnum(ch2) Alors
-      r ← somme(valeur(ch1), valeur(ch2))
-      afficher Convch(r) dans resultat
+      resultat ← somme(valeur(ch1), valeur(ch2))
+      afficher Convch(resultat) dans l'étiquette resultat
    Sinon
-      afficher "ERREUR DE SAISIE" dans resultat
+      afficher "ERREUR DE SAISIE" dans l'étiquette resultat
    Fin Si
-Fin</pre><div class="lab" style="--c:#374151">Code Python</div><pre>from PyQt5 import QtWidgets, uic
+Fin</pre><div class="lab" style="--c:#374151">Code Python</div><pre>from PyQt5.uic import loadUi
+from PyQt5.QtWidgets import QApplication
 
-app = QtWidgets.QApplication([])
-dlg = uic.loadUi("interface_somme.ui")
 
 def somme(n1, n2):
     return n1 + n2
 
-def calcul():
-    ch1 = dlg.a.text()              # une saisie est toujours une chaîne
-    ch2 = dlg.b.text()
+
+def calculer():
+    ch1 = windows.a.text()              # une saisie est toujours une chaîne
+    ch2 = windows.b.text()
+
     if ch1.isdigit() and ch2.isdigit():
-        r = somme(int(ch1), int(ch2))   # conversion str -&gt; int
-        dlg.resultat.setText(str(r))    # conversion int -&gt; str
+        resultat = somme(int(ch1), int(ch2))      # conversion str -&gt; int
+        windows.resultat.setText(str(resultat))   # conversion int -&gt; str
     else:
-        dlg.resultat.setText("ERREUR DE SAISIE")
+        windows.resultat.setText("ERREUR DE SAISIE")
 
-# Connexions
-dlg.calculersomme.clicked.connect(calcul)
 
-dlg.show()
-app.exec()</pre><div class="note" style="--c:var(--c2)"><b class="t">Remarque.</b> <code>isdigit()</code> n’accepte que les entiers positifs. Pour accepter les négatifs, on peut tester la conversion avec <code>try / except</code>.</div></details></div><div class="card pj" id="app2" style="--c:var(--c2)"><h3>Application 2 : PGCD de deux nombres</h3><p>Créer <code>int_pgcd.ui</code> qui calcule et affiche le PGCD de deux entiers, puis <code>pgm_pgcd.py</code> avec une fonction <code>pgcd</code>.</p><div class="mock"><div class="mt">&#9635; Calcul du pgcd</div><div class="mb"><span>N1</span><span class="mi blue" style="min-width:90px">77</span><span>N2</span><span class="mi blue" style="min-width:90px">49</span><span class="mbtn">PGCD</span><span class="mi blue" style="min-width:50px">7</span></div></div><table><tr><th>objectName</th><th>Classe</th><th>Rôle</th></tr><tr><td><code>n1, n2</code></td><td>QLineEdit</td><td>les deux entiers</td></tr><tr><td><code>pgcd</code></td><td>QPushButton</td><td>lance le calcul</td></tr><tr><td><code>res</code></td><td>QLabel</td><td>affiche le PGCD</td></tr></table><details class="sol"><summary>Voir la correction (algorithme et code)</summary><div class="lab" style="--c:#1d4ed8">Algorithme</div><pre class="algo">Fonction pgcd(a, b : entier) : entier       // soustractions successives
+app = QApplication([])
+windows = loadUi("interface_somme.ui")
+
+windows.calculersomme.clicked.connect(calculer)
+
+windows.show()
+app.exec()</pre><div class="note" style="--c:var(--c2)"><b class="t">Remarque.</b> <code>isdigit()</code> n’accepte que les entiers positifs. Pour accepter les négatifs, on peut tester la conversion avec <code>try / except</code>.</div></details></div><div class="card pj" id="app2" style="--c:var(--c2)"><h3>Application 2 : PGCD de deux nombres</h3><p>Créer <code>int_pgcd.ui</code> qui calcule et affiche le PGCD de deux entiers, puis <code>pgm_pgcd.py</code> avec une fonction <code>pgcd</code>.</p><div class="mock"><div class="mt">&#9635; Calcul du pgcd</div><div class="mb"><span>N1</span><span class="mi blue" style="min-width:90px">77</span><span>N2</span><span class="mi blue" style="min-width:90px">49</span><span class="mbtn">PGCD</span><span class="mi blue" style="min-width:50px">7</span></div></div><table><tr><th>objectName</th><th>Classe</th><th>Rôle</th></tr><tr><td><code>n1, n2</code></td><td>QLineEdit</td><td>les deux entiers</td></tr><tr><td><code>pgcd</code></td><td>QPushButton</td><td>lance le calcul</td></tr><tr><td><code>res</code></td><td>QLabel</td><td>affiche le PGCD</td></tr></table><details class="sol"><summary>Voir la correction (algorithme et code)</summary><div class="lab" style="--c:#1d4ed8">Algorithme</div><pre class="algo">Fonction pgcd (a, b : entier) : entier       // algorithme d'Euclide
 Début
-   Tant que a ≠ b Faire
-      Si a &gt; b Alors
-         a ← a - b
-      Sinon
-         b ← b - a
-      Fin Si
+   Tant que b ≠ 0 Faire
+      r ← a Mod b
+      a ← b
+      b ← r
    Fin Tant que
    Retourner a
 Fin
 
-Procédure calcul_pgcd()
+Procédure calculer()
 Début
-   Si saisies entières ET n1 &gt; 0 ET n2 &gt; 0 Alors
-      afficher pgcd(n1, n2) dans res
+   Si Estnum(n1) ET Estnum(n2) Alors
+      resultat ← pgcd(valeur(n1), valeur(n2))
+      afficher Convch(resultat) dans res
    Sinon
       afficher "ERREUR DE SAISIE" dans res
    Fin Si
-Fin</pre><div class="lab" style="--c:#374151">Code Python</div><pre>from PyQt5 import QtWidgets, uic
+Fin</pre><div class="lab" style="--c:#374151">Code Python</div><pre>from PyQt5.uic import loadUi
+from PyQt5.QtWidgets import QApplication
 
-app = QtWidgets.QApplication([])
-dlg = uic.loadUi("int_pgcd.ui")
 
 def pgcd(a, b):
-    while a != b:
-        if a &gt; b:
-            a = a - b
-        else:
-            b = b - a
+    while b != 0:
+        r = a % b
+        a = b
+        b = r
+
     return a
 
-def calcul_pgcd():
-    ch1 = dlg.n1.text()
-    ch2 = dlg.n2.text()
-    if ch1.isdigit() and ch2.isdigit() and int(ch1) &gt; 0 and int(ch2) &gt; 0:
-        dlg.res.setText(str(pgcd(int(ch1), int(ch2))))
+
+def calculer():
+    ch1 = windows.n1.text()
+    ch2 = windows.n2.text()
+
+    if ch1.isdigit() and ch2.isdigit():
+        resultat = pgcd(int(ch1), int(ch2))
+        windows.res.setText(str(resultat))
     else:
-        dlg.res.setText("ERREUR DE SAISIE")
+        windows.res.setText("ERREUR DE SAISIE")
 
-# Connexions
-dlg.pgcd.clicked.connect(calcul_pgcd)
 
-dlg.show()
-app.exec()</pre><div class="note" style="--c:var(--c4)"><b class="t">Pourquoi refuser 0 ?</b> Avec a = 0, la boucle ne change jamais les valeurs : le programme tournerait sans fin. <b>Trace pour 77 et 49 :</b> (77, 49), (28, 49), (28, 21), (7, 21), (7, 14), (7, 7), donc PGCD = 7.</div></details></div><div class="card pj" id="app3" style="--c:var(--c3)"><h3>Application 3 : Nombre premier</h3><p>Créer <code>int_premier.ui</code> pour saisir un nombre et vérifier s’il est premier. <b>Tester</b> affiche le résultat, <b>Réinitialiser</b> efface la saisie et le résultat, <b>Fermer</b> ferme la fenêtre. Fichier : <code>pgm_premier.py</code> avec la fonction <code>premier</code>.</p><div class="mock"><div class="mt">&#9635; Premier</div><div class="mb"><span>N</span><span class="mi blue" style="min-width:70px">41</span><span class="mbtn">Tester</span><span class="mbtn">Réinitialiser</span><span class="mbtn">Fermer</span><span class="mi blue" style="min-width:300px">41 est un nombre premier</span></div></div><table><tr><th>objectName</th><th>Classe</th><th>Rôle</th></tr><tr><td><code>n</code></td><td>QLineEdit</td><td>nombre à tester</td></tr><tr><td><code>tester</code></td><td>QPushButton</td><td>lance la vérification</td></tr><tr><td><code>init</code></td><td>QPushButton</td><td>efface n et res</td></tr><tr><td><code>fermer</code></td><td>QPushButton</td><td>ferme la fenêtre</td></tr><tr><td><code>res</code></td><td>QLabel</td><td>affiche le résultat</td></tr></table><details class="sol"><summary>Voir la correction (algorithme et code)</summary><div class="lab" style="--c:#1d4ed8">Algorithme</div><pre class="algo">Fonction premier(n : entier) : booléen
+app = QApplication([])
+windows = loadUi("int_pgcd.ui")
+
+windows.pgcd.clicked.connect(calculer)
+
+windows.show()
+app.exec()</pre><div class="note" style="--c:var(--c4)"><b class="t">Trace pour 77 et 49 :</b> (77, 49) → (49, 28) → (28, 21) → (21, 7) → (7, 0), donc PGCD = 7. L’algorithme d’Euclide fonctionne même si l’un des nombres est 0.</div></details></div><div class="card pj" id="app3" style="--c:var(--c3)"><h3>Application 3 : Nombre premier</h3><p>Créer <code>int_premier.ui</code> pour saisir un nombre et vérifier s’il est premier. <b>Tester</b> affiche le résultat, <b>Réinitialiser</b> efface la saisie et le résultat, <b>Fermer</b> ferme la fenêtre. Fichier : <code>pgm_premier.py</code> avec la fonction <code>premier</code>.</p><div class="mock"><div class="mt">&#9635; Premier</div><div class="mb"><span>N</span><span class="mi blue" style="min-width:70px">41</span><span class="mbtn">Tester</span><span class="mbtn">Réinitialiser</span><span class="mbtn">Fermer</span><span class="mi blue" style="min-width:300px">41 est un nombre premier</span></div></div><table><tr><th>objectName</th><th>Classe</th><th>Rôle</th></tr><tr><td><code>n</code></td><td>QLineEdit</td><td>nombre à tester</td></tr><tr><td><code>tester</code></td><td>QPushButton</td><td>lance la vérification</td></tr><tr><td><code>init</code></td><td>QPushButton</td><td>efface n et res</td></tr><tr><td><code>fermer</code></td><td>QPushButton</td><td>ferme la fenêtre</td></tr><tr><td><code>res</code></td><td>QLabel</td><td>affiche le résultat</td></tr></table><details class="sol"><summary>Voir la correction (algorithme et code)</summary><div class="lab" style="--c:#1d4ed8">Algorithme</div><pre class="algo">Fonction premier(n : entier) : booléen
 Début
    Si n &lt; 2 Alors Retourner Faux
    i ← 2
-   Tant que i * i ≤ n ET n mod i ≠ 0 Faire
+   Tant que i * i ≤ n ET n Mod i ≠ 0 Faire
       i ← i + 1
    Fin Tant que
    Retourner (i * i &gt; n)
@@ -187,10 +209,9 @@ Début
    Sinon afficher "ERREUR DE SAISIE"
 Fin
 
-Procédure reinit() : vider n et res, curseur dans n</pre><div class="lab" style="--c:#374151">Code Python</div><pre>from PyQt5 import QtWidgets, uic
+Procédure reinit() : vider n et res, curseur dans n</pre><div class="lab" style="--c:#374151">Code Python</div><pre>from PyQt5.uic import loadUi
+from PyQt5.QtWidgets import QApplication
 
-app = QtWidgets.QApplication([])
-dlg = uic.loadUi("int_premier.ui")
 
 def premier(n):
     if n &lt; 2:
@@ -200,228 +221,252 @@ def premier(n):
         i = i + 1
     return i * i &gt; n
 
+
+
 def tester():
-    ch = dlg.n.text()
+    ch = windows.n.text()
+
     if not ch.isdigit():
-        dlg.res.setText("ERREUR DE SAISIE")
+        windows.res.setText("ERREUR DE SAISIE")
     elif premier(int(ch)):
-        dlg.res.setText(ch + " est un nombre premier")
+        windows.res.setText(ch + " est un nombre premier")
     else:
-        dlg.res.setText(ch + " n'est pas un nombre premier")
+        windows.res.setText(ch + " n'est pas un nombre premier")
+
 
 def reinit():
-    dlg.n.clear()
-    dlg.res.clear()
-    dlg.n.setFocus()
+    windows.n.clear()
+    windows.res.clear()
+    windows.n.setFocus()
 
-# Connexions
-dlg.tester.clicked.connect(tester)
-dlg.init.clicked.connect(reinit)
-dlg.fermer.clicked.connect(dlg.close)   # close sans parenthèses
 
-dlg.show()
+app = QApplication([])
+windows = loadUi("int_premier.ui")
+
+windows.tester.clicked.connect(tester)
+windows.init.clicked.connect(reinit)
+windows.fermer.clicked.connect(windows.close)   # close sans parenthèses
+
+windows.show()
 app.exec()</pre><div class="note" style="--c:var(--c1)"><b class="t">Pourquoi i * i ≤ n ?</b> Si n a un diviseur, il en a un inférieur ou égal à √n : inutile de tester au-delà. Attention : dans le cours, la condition <code>i &lt; n//2</code> déclare à tort 4 premier ; ici elle est corrigée.</div></details></div><div class="card pj" id="app4" style="--c:var(--c5)"><h3>Application 4 : Mini calculatrice</h3><p>Créer <code>mini_cal.ui</code> : deux zones de saisie, une liste déroulante d’opérations (+ − * / div mod), un bouton « = », une zone résultat, une image (Label avec la propriété <code>pixmap</code>), et les boutons Réinitialiser et Fermer. Programme : <code>mini_cal.py</code>.</p><div class="mock"><div class="mt">&#9635; mini calculatrice</div><div class="mb"><span class="mi " style="min-width:60px">149</span><span class="mi" style="min-width:50px">div &#9662;</span><span class="mi " style="min-width:50px">7</span><span class="mbtn">=</span><span class="mi " style="min-width:60px">21</span><span class="mbtn">Réinitialiser</span><span class="mbtn">Fermer</span></div></div><table><tr><th>objectName</th><th>Classe</th><th>Rôle</th></tr><tr><td><code>n1, n2</code></td><td>QLineEdit</td><td>les deux opérandes</td></tr><tr><td><code>op</code></td><td>QComboBox</td><td>opération choisie (+ - * / div mod)</td></tr><tr><td><code>btn_egal</code></td><td>QPushButton</td><td>lance le calcul</td></tr><tr><td><code>res</code></td><td>QLineEdit</td><td>résultat</td></tr><tr><td><code>init, fermer</code></td><td>QPushButton</td><td>réinitialiser, fermer (voir remarque)</td></tr><tr><td><code>image</code></td><td>QLabel</td><td>image de la calculatrice (pixmap)</td></tr></table><details class="sol"><summary>Voir la correction (algorithme et code)</summary><div class="lab" style="--c:#1d4ed8">Algorithme</div><pre class="algo">Procédure calculer()
 Début
    Si NON (Estnum(n1) ET Estnum(n2)) Alors
-      message d'erreur "entrer deux entiers"
+      afficher "ERREUR DE SAISIE" dans res
    Sinon
       x ← valeur(n1) ; y ← valeur(n2) ; op ← choix de la liste
-      Si y = 0 ET op ∈ ["/", "div", "mod"] Alors
-         message d'erreur "division par zéro"
-      Sinon
-         Selon op Faire
-            "+"   : r ← x + y
-            "-"   : r ← x - y
-            "*"   : r ← x * y
-            "/"   : r ← x / y
-            "div" : r ← x div y
-            sinon : r ← x mod y
-         Fin Selon
-         afficher Convch(r) dans res
+      Si op = "+" Alors resultat ← x + y
+      Sinon Si op = "-" Alors resultat ← x - y
+      Sinon Si op = "*" Alors resultat ← x * y
+      Sinon Si y = 0 Alors resultat ← "Division par zéro"
+      Sinon Si op = "/" Alors resultat ← x / y
+      Sinon Si op = "div" Alors resultat ← x div y
+      Sinon resultat ← x mod y
       Fin Si
+      afficher Convch(resultat) dans res
    Fin Si
-Fin</pre><div class="lab" style="--c:#374151">Code Python</div><pre>from PyQt5 import QtWidgets, uic
+Fin</pre><div class="lab" style="--c:#374151">Code Python</div><pre>from PyQt5.uic import loadUi
+from PyQt5.QtWidgets import QApplication
 
-app = QtWidgets.QApplication([])
-dlg = uic.loadUi("mini_cal.ui")
 
 def calculer():
-    ch1 = dlg.n1.text()
-    ch2 = dlg.n2.text()
-    op = dlg.op.currentText()            # choix de la liste déroulante
+    ch1 = windows.n1.text()
+    ch2 = windows.n2.text()
+    op = windows.op.currentText()            # choix de la liste déroulante
+
     if not (ch1.isdigit() and ch2.isdigit()):
-        QtWidgets.QMessageBox.critical(dlg, "Attention", "entrer deux entiers")
+        windows.res.setText("ERREUR DE SAISIE")
     else:
         x = int(ch1)
         y = int(ch2)
-        if y == 0 and op in ["/", "div", "mod"]:
-            QtWidgets.QMessageBox.critical(dlg, "Attention", "division par zéro")
+
+        if op == "+":
+            resultat = x + y
+        elif op == "-":
+            resultat = x - y
+        elif op == "*":
+            resultat = x * y
+        elif y == 0:
+            resultat = "Division par zéro"
+        elif op == "/":
+            resultat = x / y
+        elif op == "div":
+            resultat = x // y
         else:
-            if op == "+":
-                r = x + y
-            elif op == "-":
-                r = x - y
-            elif op == "*":
-                r = x * y
-            elif op == "/":
-                r = x / y
-            elif op == "div":
-                r = x // y
-            else:
-                r = x % y
-            dlg.res.setText(str(r))
+            resultat = x % y
 
-# Connexions
-dlg.btn_egal.clicked.connect(calculer)
+        windows.res.setText(str(resultat))
 
-dlg.show()
-app.exec()</pre><div class="note" style="--c:var(--c5)"><b class="t">Fermer et Réinitialiser sans code.</b> Dans l’éditeur de signaux et slots : <code>fermer</code> → <code>clicked()</code> → <code>Form</code> → <code>close()</code> ; <code>init</code> → <code>clicked()</code> → <code>n1</code>, <code>n2</code>, <code>res</code> → <code>clear()</code> (une ligne par zone). On peut remplacer la suite if / elif par <code>match</code> si Python ≥ 3.10.</div></details></div><div class="card pj" id="app5" style="--c:var(--c4)"><h3>Applications 5, 6 et 7 : PGCD / PPCM (3 versions)</h3><p>Même sujet : calculer le <b>PGCD</b> ou le <b>PPCM</b> de deux entiers <b>strictement positifs</b>, selon le choix de l’utilisateur. Seul le <b>widget de choix</b> change :</p><table><tr><th>Version</th><th>Widget de choix</th><th>Méthode</th><th>Particularité</th></tr><tr><td>5</td><td>Combo Box <code>op</code></td><td><code>currentText()</code></td><td>un choix parmi une liste</td></tr><tr><td>6</td><td>2 Radio Button</td><td><code>isChecked()</code></td><td>un seul choix à la fois</td></tr><tr><td>7</td><td>2 Check Box + Text Browser</td><td><code>isChecked()</code></td><td>plusieurs choix, résultat sur 2 lignes (<code>\n</code>)</td></tr></table><div class="mock"><div class="mt">&#9635; Calcul du pgcd et du ppcm (version 5)</div><div class="mb"><span class="mi" style="min-width:60px">PGCD &#9662;</span><span class="mi " style="min-width:50px">125</span><span>et</span><span class="mi " style="min-width:50px">50</span><span class="mbtn">Calculer</span><span class="mi " style="min-width:60px">25</span><span class="mbtn">Réinitialiser</span><span class="mbtn">Fermer</span></div></div><div class="mock"><div class="mt">&#9635; Calcul du pgcd et du ppcm (version 6)</div><div class="mb"><span>n1</span><span class="mi " style="min-width:50px">48</span><span>n2</span><span class="mi " style="min-width:50px">56</span><span>&#9675; PGCD &#9679; PPCM</span><span class="mbtn">Calculer</span><span class="mi" style="min-width:280px">Le ppcm de 48 et 56 est égal à 336</span></div></div><div class="mock"><div class="mt">&#9635; Calcul du pgcd et du ppcm (version 7)</div><div class="mb"><span>n1</span><span class="mi " style="min-width:50px">8</span><span>n2</span><span class="mi " style="min-width:50px">47</span><span>&#9745; PGCD &#9745; PPCM</span><span class="mbtn">Calculer</span><span class="mi" style="min-width:280px;min-height:40px">Le pgcd de 8 et 47 est égal à 1<br>Le ppcm de 8 et 47 est égal à 376</span></div></div><table><tr><th>objectName</th><th>Classe</th><th>Rôle</th></tr><tr><td><code>n1, n2</code></td><td>QLineEdit</td><td>les deux entiers</td></tr><tr><td><code>op</code> (v5) / <code>btn_pgcd, btn_ppcm</code> (v6) / <code>cc_pgcd, cc_ppcm</code> (v7)</td><td>QComboBox / QRadioButton / QCheckBox</td><td>choix du calcul</td></tr><tr><td><code>res</code> (v5, v6) / <code>t1</code> (v7)</td><td>QLineEdit ou QLabel / QTextBrowser</td><td>affichage du résultat</td></tr><tr><td><code>calculer, init, fermer</code></td><td>QPushButton</td><td>calculer, réinitialiser, fermer</td></tr></table><details class="sol"><summary>Voir la correction (algorithme et code des 3 versions)</summary><div class="lab" style="--c:#1d4ed8">Algorithme : parties communes</div><pre class="algo">Fonction pgcd(a, b : entier) : entier      // voir Application 2
-Fonction ppcm(a, b : entier) : entier
+
+app = QApplication([])
+windows = loadUi("mini_cal.ui")
+
+windows.btn_egal.clicked.connect(calculer)
+
+windows.show()
+app.exec()</pre><div class="note" style="--c:var(--c5)"><b class="t">Fermer et Réinitialiser sans code.</b> Dans l’éditeur de signaux et slots : <code>fermer</code> → <code>clicked()</code> → <code>Form</code> → <code>close()</code> ; <code>init</code> → <code>clicked()</code> → <code>n1</code>, <code>n2</code>, <code>res</code> → <code>clear()</code> (une ligne par zone). On peut remplacer la suite if / elif par <code>match</code> si Python ≥ 3.10.</div></details></div><div class="card pj" id="app5" style="--c:var(--c4)"><h3>Applications 5, 6 et 7 : PGCD / PPCM (3 versions)</h3><p>Même sujet : calculer le <b>PGCD</b> ou le <b>PPCM</b> de deux entiers, selon le choix de l’utilisateur. Seul le <b>widget de choix</b> change :</p><table><tr><th>Version</th><th>Widget de choix</th><th>Méthode</th><th>Particularité</th></tr><tr><td>5</td><td>Combo Box <code>op</code></td><td><code>currentText()</code></td><td>un choix parmi une liste, pop-up d’erreur (QMessageBox)</td></tr><tr><td>6</td><td>2 Radio Button <code>pgcd</code>, <code>ppcm</code></td><td><code>isChecked()</code></td><td>un seul choix à la fois</td></tr><tr><td>7</td><td>2 Check Box <code>pgcd</code>, <code>ppcm</code> + Text Browser</td><td><code>isChecked()</code></td><td>plusieurs choix, résultat sur 2 lignes (<code>\n</code>)</td></tr></table><div class="mock"><div class="mt">&#9635; Calcul du pgcd et du ppcm (version 5)</div><div class="mb"><span class="mi" style="min-width:60px">PGCD &#9662;</span><span class="mi " style="min-width:50px">125</span><span>et</span><span class="mi " style="min-width:50px">50</span><span class="mbtn">Calculer</span><span class="mi " style="min-width:60px">25</span><span class="mbtn">Réinitialiser</span><span class="mbtn">Fermer</span></div></div><div class="mock"><div class="mt">&#9635; Calcul du pgcd et du ppcm (version 6)</div><div class="mb"><span>n1</span><span class="mi " style="min-width:50px">48</span><span>n2</span><span class="mi " style="min-width:50px">56</span><span>&#9675; PGCD &#9679; PPCM</span><span class="mbtn">Calculer</span><span class="mi" style="min-width:100px">336</span></div></div><div class="mock"><div class="mt">&#9635; Calcul du pgcd et du ppcm (version 7)</div><div class="mb"><span>n1</span><span class="mi " style="min-width:50px">8</span><span>n2</span><span class="mi " style="min-width:50px">47</span><span>&#9745; PGCD &#9745; PPCM</span><span class="mbtn">Calculer</span><span class="mi" style="min-width:280px;min-height:40px">Le pgcd de 8 et 47 est égal à 1<br>Le ppcm de 8 et 47 est égal à 376</span></div></div><table><tr><th>objectName</th><th>Classe</th><th>Rôle</th></tr><tr><td><code>n1, n2</code></td><td>QLineEdit</td><td>les deux entiers</td></tr><tr><td><code>op</code> (v5) / <code>pgcd, ppcm</code> (v6 et v7)</td><td>QComboBox / QRadioButton (v6) / QCheckBox (v7)</td><td>choix du calcul</td></tr><tr><td><code>res</code></td><td>QLineEdit ou QLabel (v5, v6) / QTextBrowser (v7)</td><td>affichage du résultat</td></tr><tr><td><code>calcul</code></td><td>QPushButton</td><td>lance le calcul</td></tr><tr><td><code>init, fermer</code></td><td>QPushButton</td><td>réinitialiser, fermer (éditeur de signaux et slots)</td></tr></table><details class="sol"><summary>Voir la correction (algorithme et code des 3 versions)</summary><div class="lab" style="--c:#1d4ed8">Algorithme : partie commune</div><pre class="algo">Fonction pgcd (a, b : entier) : entier       // algorithme d'Euclide
+Début
+   Tant que b ≠ 0 Faire
+      r ← a Mod b
+      a ← b
+      b ← r
+   Fin Tant que
+   Retourner a
+Fin</pre><div class="lab" style="--c:#1d4ed8">Algorithme : version 5 (Combo Box)</div><pre class="algo">Fonction ppcm (a, b : entier) : entier
 Début
    Retourner (a * b) div pgcd(a, b)
 Fin
 
-Fonction saisie_valide(ch1, ch2 : chaîne) : booléen
+Procédure calculer()
 Début
-   Retourner Estnum(ch1) ET Estnum(ch2) ET valeur(ch1) &gt; 0 ET valeur(ch2) &gt; 0
-Fin</pre><div class="lab" style="--c:#1d4ed8">Algorithme : version 5 (Combo Box)</div><pre class="algo">Procédure calcul()
-Début
-   Si NON saisie_valide(n1, n2) Alors message d'erreur
+   Si NON (saisies entières ET a &gt; 0 ET b &gt; 0) Alors
+      fenêtre d'erreur "entrer des entiers strictement positifs"
    Sinon
-      Si choix = "PGCD" Alors r ← pgcd(a, b)
-      Sinon r ← ppcm(a, b)
-      afficher Convch(r) dans res
-Fin</pre><div class="lab" style="--c:#1d4ed8">Algorithme : version 6 (boutons radio)</div><pre class="algo">Procédure calcul()
+      Si choix = "PGCD" Alors resultat ← pgcd(a, b)
+      Sinon resultat ← ppcm(a, b)
+      afficher Convch(resultat) dans res
+   Fin Si
+Fin</pre><div class="lab" style="--c:#1d4ed8">Algorithme : version 6 (boutons radio)</div><pre class="algo">Procédure calculer()
 Début
-   Si NON saisie_valide(n1, n2) Alors message d'erreur
-   Sinon Si btn_pgcd coché Alors afficher "Le pgcd de a et b est égal à " + pgcd(a, b)
-   Sinon Si btn_ppcm coché Alors afficher "Le ppcm de a et b est égal à " + ppcm(a, b)
-   Sinon message d'erreur "Vous devez faire un choix"
-Fin</pre><div class="lab" style="--c:#1d4ed8">Algorithme : version 7 (cases à cocher)</div><pre class="algo">Procédure calcul()
-Début
-   Si NON saisie_valide(n1, n2) Alors message d'erreur
-   Sinon Si aucune case cochée Alors message d'erreur "au moins un choix"
+   a ← valeur(n1) ; b ← valeur(n2)
+   Si pgcd coché Alors
+      afficher pgcd(|a|, |b|) dans res
+   Sinon Si ppcm coché Alors
+      Si a = 0 OU b = 0 Alors resultat ← 0
+      Sinon resultat ← |a * b| div pgcd(|a|, |b|)
+      afficher resultat dans res
    Sinon
-      ch ← ""
-      Si cc_pgcd cochée Alors ch ← ch + "Le pgcd ... " + retour à la ligne
-      Si cc_ppcm cochée Alors ch ← ch + "Le ppcm ... "
-      afficher ch dans t1
-Fin</pre><div class="lab" style="--c:#374151">Code Python : version 5 (Combo Box)</div><pre>from PyQt5 import QtWidgets, uic
+      afficher "Choisir PGCD ou PPCM" dans res
+   Fin Si
+Fin</pre><div class="lab" style="--c:#1d4ed8">Algorithme : version 7 (cases à cocher)</div><pre class="algo">Procédure calculer()
+Début
+   a ← valeur(n1) ; b ← valeur(n2) ; ch ← ""
+   Si pgcd cochée Alors
+      ch ← ch + "Le pgcd de a et b est égal à " + pgcd(|a|, |b|) + retour à la ligne
+   Si ppcm cochée Alors
+      Si a = 0 OU b = 0 Alors resultat ← 0
+      Sinon resultat ← |a * b| div pgcd(|a|, |b|)
+      ch ← ch + "Le ppcm de a et b est égal à " + resultat
+   Si ch = "" Alors ch ← "Choisir PGCD ou PPCM"
+   afficher ch dans res
+Fin</pre><div class="lab" style="--c:#374151">Code Python : version 5 (Combo Box)</div><pre>from PyQt5.uic import loadUi
+from PyQt5.QtWidgets import QApplication, QMessageBox
 
-app = QtWidgets.QApplication([])
-dlg = uic.loadUi("int_pgcd_ppcm.ui")
 
 def pgcd(a, b):
-    while a != b:
-        if a &gt; b:
-            a = a - b
-        else:
-            b = b - a
+    while b != 0:
+        r = a % b
+        a = b
+        b = r
+
     return a
+
 
 def ppcm(a, b):
     return a * b // pgcd(a, b)
 
-def saisie_valide(ch1, ch2):
-    return ch1.isdigit() and ch2.isdigit() and int(ch1) &gt; 0 and int(ch2) &gt; 0
 
-def calcul():
-    ch1 = dlg.n1.text()
-    ch2 = dlg.n2.text()
-    if not saisie_valide(ch1, ch2):
-        QtWidgets.QMessageBox.critical(dlg, "Attention", "entrer des entiers strictement positifs")
+def calculer():
+    ch1 = windows.n1.text()
+    ch2 = windows.n2.text()
+
+    if not (ch1.isdigit() and ch2.isdigit() and int(ch1) &gt; 0 and int(ch2) &gt; 0):
+        QMessageBox.critical(windows, "Attention", "entrer des entiers strictement positifs")
     else:
         a = int(ch1)
         b = int(ch2)
-        if dlg.op.currentText() == "PGCD":
-            r = pgcd(a, b)
+
+        if windows.op.currentText() == "PGCD":
+            resultat = pgcd(a, b)
         else:
-            r = ppcm(a, b)
-        dlg.res.setText(str(r))
+            resultat = ppcm(a, b)
 
-# Connexions
-dlg.calculer.clicked.connect(calcul)
-dlg.fermer.clicked.connect(dlg.close)
+        windows.res.setText(str(resultat))
 
-dlg.show()
-app.exec()</pre><div class="lab" style="--c:#374151">Code Python : version 6 (boutons radio)</div><pre>from PyQt5 import QtWidgets, uic
 
-app = QtWidgets.QApplication([])
-dlg = uic.loadUi("int_pgcd_ppcm_br.ui")
+app = QApplication([])
+windows = loadUi("int_pgcd_ppcm.ui")
+
+windows.calcul.clicked.connect(calculer)
+
+windows.show()
+app.exec()</pre><div class="lab" style="--c:#374151">Code Python : version 6 (boutons radio)</div><pre>from PyQt5.uic import loadUi
+from PyQt5.QtWidgets import QApplication
+
 
 def pgcd(a, b):
-    while a != b:
-        if a &gt; b:
-            a = a - b
-        else:
-            b = b - a
+    while b != 0:
+        r = a % b
+        a = b
+        b = r
+
     return a
 
-def ppcm(a, b):
-    return a * b // pgcd(a, b)
 
-def saisie_valide(ch1, ch2):
-    return ch1.isdigit() and ch2.isdigit() and int(ch1) &gt; 0 and int(ch2) &gt; 0
+def calculer():
+    a = int(windows.n1.text())
+    b = int(windows.n2.text())
 
-def calcul():
-    ch1 = dlg.n1.text()
-    ch2 = dlg.n2.text()
-    if not saisie_valide(ch1, ch2):
-        QtWidgets.QMessageBox.critical(dlg, "Attention", "entrer des entiers strictement positifs")
-    else:
-        a = int(ch1)
-        b = int(ch2)
-        if dlg.btn_pgcd.isChecked():
-            dlg.res.setText("Le pgcd de " + ch1 + " et " + ch2 + " est égal à " + str(pgcd(a, b)))
-        elif dlg.btn_ppcm.isChecked():
-            dlg.res.setText("Le ppcm de " + ch1 + " et " + ch2 + " est égal à " + str(ppcm(a, b)))
+    if windows.pgcd.isChecked():
+        resultat = pgcd(abs(a), abs(b))
+        windows.res.setText(str(resultat))
+
+    elif windows.ppcm.isChecked():
+        if a == 0 or b == 0:
+            resultat = 0
         else:
-            QtWidgets.QMessageBox.critical(dlg, "Attention", "Vous devez faire un choix")
+            resultat = abs(a * b) // pgcd(abs(a), abs(b))
 
-# Connexions
-dlg.calculer.clicked.connect(calcul)
-dlg.fermer.clicked.connect(dlg.close)
+        windows.res.setText(str(resultat))
 
-dlg.show()
-app.exec()</pre><div class="lab" style="--c:#374151">Code Python : version 7 (cases à cocher)</div><pre>from PyQt5 import QtWidgets, uic
+    else:
+        windows.res.setText("Choisir PGCD ou PPCM")
 
-app = QtWidgets.QApplication([])
-dlg = uic.loadUi("int_pgcd_ppcm_cc.ui")
+
+app = QApplication([])
+windows = loadUi("int_pgcd_ppcm_br.ui")
+
+windows.calcul.clicked.connect(calculer)
+
+windows.show()
+app.exec()</pre><div class="lab" style="--c:#374151">Code Python : version 7 (cases à cocher)</div><pre>from PyQt5.uic import loadUi
+from PyQt5.QtWidgets import QApplication
+
 
 def pgcd(a, b):
-    while a != b:
-        if a &gt; b:
-            a = a - b
-        else:
-            b = b - a
+    while b != 0:
+        r = a % b
+        a = b
+        b = r
+
     return a
 
-def ppcm(a, b):
-    return a * b // pgcd(a, b)
 
-def saisie_valide(ch1, ch2):
-    return ch1.isdigit() and ch2.isdigit() and int(ch1) &gt; 0 and int(ch2) &gt; 0
+def calculer():
+    a = int(windows.n1.text())
+    b = int(windows.n2.text())
+    ch = ""
 
-def calcul():
-    ch1 = dlg.n1.text()
-    ch2 = dlg.n2.text()
-    if not saisie_valide(ch1, ch2):
-        QtWidgets.QMessageBox.critical(dlg, "Attention", "entrer des entiers strictement positifs")
-    elif not (dlg.cc_pgcd.isChecked() or dlg.cc_ppcm.isChecked()):
-        QtWidgets.QMessageBox.critical(dlg, "Attention", "Vous devez faire au moins un choix")
-    else:
-        a = int(ch1)
-        b = int(ch2)
-        ch = ""
-        if dlg.cc_pgcd.isChecked():
-            ch = ch + "Le pgcd de " + ch1 + " et " + ch2 + " est égal à " + str(pgcd(a, b)) + "\n"
-        if dlg.cc_ppcm.isChecked():
-            ch = ch + "Le ppcm de " + ch1 + " et " + ch2 + " est égal à " + str(ppcm(a, b))
-        dlg.t1.setText(ch)
+    if windows.pgcd.isChecked():
+        ch = ch + "Le pgcd de " + str(a) + " et " + str(b) + " est égal à " + str(pgcd(abs(a), abs(b))) + "\n"
 
-# Connexions
-dlg.calculer.clicked.connect(calcul)
-dlg.fermer.clicked.connect(dlg.close)
+    if windows.ppcm.isChecked():
+        if a == 0 or b == 0:
+            resultat = 0
+        else:
+            resultat = abs(a * b) // pgcd(abs(a), abs(b))
 
-dlg.show()
-app.exec()</pre><div class="note" style="--c:var(--c6)"><b class="t">Radio ou cases ?</b> Avec des boutons radio, <code>if / elif</code> (un seul choix possible). Avec des cases à cocher, <b>deux <code>if</code> indépendants</b> : les deux cases peuvent être cochées en même temps. Le PPCM se calcule par <code>a * b // pgcd(a, b)</code>.</div></details></div><div class="sec" id="s8" style="--c:var(--c5)"><b>8</b>À retenir</div><div class="g"><div class="card" style="--c:var(--c1)"><h3>Étapes</h3><p>Qt Designer (<code>.ui</code>), puis Thonny (<code>.py</code>), puis <code>loadUi</code>.</p></div><div class="card" style="--c:var(--c2)"><h3>Événement</h3><p>Un clic produit un <b>signal</b>, relié par <code>connect()</code> à un <b>slot</b> (fonction).</p></div><div class="card" style="--c:var(--c3)"><h3>Squelette</h3><p><code>QApplication</code>, <code>loadUi</code>, fonctions, <code>connect</code>, <code>show</code>, <code>exec()</code>.</p></div><div class="card" style="--c:var(--c4)"><h3>Saisie</h3><p><code>text()</code> donne une chaîne : <code>int()</code> avant calcul, <code>str()</code> avant affichage.</p></div><div class="card" style="--c:var(--c5)"><h3>Choix</h3><p>Combo Box : <code>currentText()</code>. Radio et cases : <code>isChecked()</code>.</p></div><div class="card" style="--c:var(--c6)"><h3>Validation</h3><p>Toujours tester la saisie avant de calculer, sinon message d’erreur.</p></div></div><footer>Résumé réalisé par Elaa MOKRANI</footer></div></body></html>
+        ch = ch + "Le ppcm de " + str(a) + " et " + str(b) + " est égal à " + str(resultat)
+
+    if ch == "":
+        ch = "Choisir PGCD ou PPCM"
+
+    windows.res.setText(ch)
+
+
+app = QApplication([])
+windows = loadUi("int_pgcd_ppcm_cc.ui")
+
+windows.calcul.clicked.connect(calculer)
+
+windows.show()
+app.exec()</pre><div class="note" style="--c:var(--c6)"><b class="t">Radio ou cases ?</b> Avec des boutons radio, <code>if / elif</code> (un seul choix possible). Avec des cases à cocher, <b>deux <code>if</code> indépendants</b> : les deux cases peuvent être cochées en même temps. Dans les versions 6 et 7, <code>abs()</code> accepte aussi les nombres négatifs et le PPCM vaut 0 si un nombre est nul.</div></details></div><div class="sec" id="s8" style="--c:var(--c5)"><b>8</b>À retenir</div><div class="g"><div class="card" style="--c:var(--c1)"><h3>Étapes</h3><p>Qt Designer (<code>.ui</code>), puis Thonny (<code>.py</code>), puis <code>loadUi</code>.</p></div><div class="card" style="--c:var(--c2)"><h3>Événement</h3><p>Un clic produit un <b>signal</b>, relié par <code>connect()</code> à un <b>slot</b> (fonction).</p></div><div class="card" style="--c:var(--c3)"><h3>Squelette</h3><p><code>QApplication</code>, <code>loadUi</code>, fonctions, <code>connect</code>, <code>show</code>, <code>exec()</code>.</p></div><div class="card" style="--c:var(--c4)"><h3>Saisie</h3><p><code>text()</code> donne une chaîne : <code>int()</code> avant calcul, <code>str()</code> avant affichage.</p></div><div class="card" style="--c:var(--c5)"><h3>Choix</h3><p>Combo Box : <code>currentText()</code>. Radio et cases : <code>isChecked()</code>.</p></div><div class="card" style="--c:var(--c6)"><h3>Validation</h3><p>Toujours tester la saisie avant de calculer, sinon message d’erreur.</p></div></div><footer>Résumé réalisé par Elaa MOKRANI</footer></div></body></html>
